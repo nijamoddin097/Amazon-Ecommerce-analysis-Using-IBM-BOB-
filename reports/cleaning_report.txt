@@ -1,0 +1,58 @@
+============================================================
+  AMAZON E-COMMERCE DATASET  -  CLEANING REPORT
+============================================================
+
+Original shape : 1,000,000 rows x 20 columns
+
+-- Missing Values (before cleaning) --------------------
+  [OK] No missing values found in any column.
+
+  Total cells with NaN : 0
+
+-- Duplicate Rows ----------------------------------------
+  Duplicate rows found : 0
+
+-- Column Data Types -------------------------------------
+user_id                object
+product_id             object
+category               object
+subcategory            object
+brand                  object
+price                 float64
+discount              float64
+final_price           float64
+rating                float64
+review_count            int64
+stock                   int64
+seller_id              object
+seller_rating         float64
+purchase_date          object
+shipping_time_days      int64
+location               object
+device                 object
+payment_method         object
+is_returned              bool
+delivery_status        object
+
+-- Type Fixes --------------------------------------------
+  purchase_date -> datetime64  (unparseable rows set to NaT: 0)
+  is_returned -> bool
+
+-- Outlier / Sanity Checks -------------------------------
+  price < 0              : 0
+  final_price < 0        : 0
+  discount < 0           : 0
+  rating out of [0,5]    : 0
+  stock < 0              : 0
+  shipping_time_days < 0 : 0
+
+-- Whitespace stripped from 10 string columns.
+-- Duplicates removed : 0
+-- No numeric NaNs to fill.
+
+-- Final State -------------------------------------------
+  Cleaned shape          : 1,000,000 rows x 20 columns
+  Remaining NaN (total)  : 0
+  Remaining duplicates   : 0
+
+  [SAVED] Cleaned file -> data/amazon_ecommerce_cleaned.csv

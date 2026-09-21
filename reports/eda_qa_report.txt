@@ -1,0 +1,377 @@
+
+======================================================================
+  SECTION 1 — DATASET OVERVIEW
+======================================================================
+
+Q: How many records and columns does the dataset have?
+A: 1,000,000 rows x 20 columns.
+
+Q: What are the column names and data types?
+A: user_id                       object
+product_id                    object
+category                      object
+subcategory                   object
+brand                         object
+price                        float64
+discount                     float64
+final_price                  float64
+rating                       float64
+review_count                   int64
+stock                          int64
+seller_id                     object
+seller_rating                float64
+purchase_date         datetime64[ns]
+shipping_time_days             int64
+location                      object
+device                        object
+payment_method                object
+is_returned                     bool
+delivery_status               object
+
+Q: What is the date range of purchases?
+A: 2024-03-31 to 2026-03-31
+
+Q: How many unique users and products are there?
+A: Unique users: 603,815  |  Unique products: 89,999
+
+Q: How many unique categories and subcategories are there?
+A: Categories: 5  |  Subcategories: 16
+
+Q: How many unique sellers are there?
+A: 9,000 unique sellers
+
+======================================================================
+  SECTION 2 — PRICING & DISCOUNT ANALYSIS
+======================================================================
+
+Q: What is the average, min, and max product price?
+A: Mean: 13,224.12  |  Min: 200.03  |  Max: 79,999.70
+
+Q: What is the average discount percentage across all products?
+A: 29.00%
+
+Q: Which category offers the highest average discount?
+A:    category  avg_discount
+   Clothing     39.977763
+     Sports     27.535229
+     Beauty     27.479386
+       Home     27.465170
+Electronics     22.535288
+
+Q: What is the average final price per category?
+A: category
+Electronics    32888.99
+Home            7614.78
+Sports          5627.37
+Beauty          1886.11
+Clothing        1646.70
+
+Q: Which top 5 brands have the highest average price?
+A: brand
+Lenovo     13301.42
+H&M        13285.37
+Adidas     13284.79
+Sony       13252.86
+Samsung    13251.75
+
+Q: What percentage of orders had a discount greater than 20%?
+A: 68.08%
+
+======================================================================
+  SECTION 3 — SALES & REVENUE ANALYSIS
+======================================================================
+
+Q: What is the total revenue (sum of final_price)?
+A: Rs 9,938,876,984.90
+
+Q: Which category generates the most revenue?
+A: category
+Electronics    6.579048e+09
+Home           1.529978e+09
+Sports         1.124849e+09
+Beauty         3.759517e+08
+Clothing       3.290504e+08
+
+Q: Which are the top 5 selling subcategories by order count?
+A: subcategory
+Decor      67260
+Kitchen    67021
+Kids       67006
+Outdoor    66795
+Fitness    66780
+
+Q: What is monthly revenue trend?
+A: purchase_date
+2024-03    1.388802e+07
+2024-04    4.096292e+08
+2024-05    4.207856e+08
+2024-06    4.051715e+08
+2024-07    4.217882e+08
+2024-08    4.202220e+08
+2024-09    4.039997e+08
+2024-10    4.235672e+08
+2024-11    4.118936e+08
+2024-12    4.220663e+08
+2025-01    4.247258e+08
+2025-02    3.787897e+08
+2025-03    4.230896e+08
+2025-04    4.033051e+08
+2025-05    4.200312e+08
+2025-06    4.056538e+08
+2025-07    4.213890e+08
+2025-08    4.265546e+08
+2025-09    3.999008e+08
+2025-10    4.222367e+08
+2025-11    4.056734e+08
+2025-12    4.281423e+08
+2026-01    4.214767e+08
+2026-02    3.812453e+08
+2026-03    4.236515e+08
+Freq: M
+
+Q: Which location (city) has the highest total spending?
+A: location
+Delhi        2.000521e+09
+Bangalore    1.990174e+09
+Mumbai       1.988988e+09
+Chennai      1.981130e+09
+Hyderabad    1.978064e+09
+
+Q: Which payment method is most popular?
+A: payment_method
+Cash on Delivery    250388
+Credit Card         250324
+UPI                 249951
+Debit Card          249337
+
+======================================================================
+  SECTION 4 — RATINGS & REVIEWS
+======================================================================
+
+Q: What is the overall average product rating?
+A: 3.93 out of 5
+
+Q: What is the distribution of ratings?
+A: rating
+1.5        1
+1.6        5
+1.7        8
+1.8        8
+1.9       29
+2.0       71
+2.1      121
+2.2      296
+2.3      555
+2.4      979
+2.5     1669
+2.6     2930
+2.7     4870
+2.8     7412
+2.9    11171
+3.0    15888
+3.1    22188
+3.2    29118
+3.3    37514
+3.4    46680
+3.5    55499
+3.6    62998
+3.7    69282
+3.8    73536
+3.9    76085
+4.0    74253
+4.1    70828
+4.2    64950
+4.3    57378
+4.4    49801
+4.5    40985
+4.6    33011
+4.7    25664
+4.8    19481
+4.9    14517
+5.0    30219
+
+Q: Which category has the highest average rating?
+A: category
+Electronics    4.21
+Home           3.90
+Sports         3.88
+Clothing       3.83
+Beauty         3.82
+
+Q: Which brand has the highest average rating (with >= 1000 reviews)?
+A: brand
+Sony       3.93
+Samsung    3.93
+Lenovo     3.93
+H&M        3.93
+Zara       3.93
+
+Q: What is the average review count per category?
+A: category
+Sports         32.8
+Home           32.8
+Beauty         32.6
+Electronics    32.5
+Clothing       32.5
+
+======================================================================
+  SECTION 5 — RETURNS & DELIVERY ANALYSIS
+======================================================================
+
+Q: What is the overall product return rate?
+A: 11.60%
+
+Q: Which category has the highest return rate?
+A: category
+Beauty         11.76
+Clothing       11.74
+Sports         11.65
+Home           11.58
+Electronics    11.27
+
+Q: What is the distribution of delivery statuses?
+A: delivery_status
+Delivered     295234
+Delayed       294983
+In Transit    293793
+Returned      115990
+
+Q: What is the average shipping time (days) per delivery status?
+A: delivery_status
+Delayed       3.14
+Delivered     3.13
+In Transit    3.13
+Returned      3.41
+
+Q: Which location has the highest return rate?
+A: location
+Hyderabad    12.23
+Chennai      12.22
+Bangalore    12.20
+Mumbai       10.74
+Delhi        10.60
+
+Q: Do returned items have lower ratings on average?
+A: Returned:     3.86
+  Not returned: 3.94
+
+======================================================================
+  SECTION 6 — CUSTOMER BEHAVIOUR
+======================================================================
+
+Q: Which device is most used for purchases?
+A: device
+Mobile App    333637
+Web           333297
+Tablet        333066
+
+Q: Which device has the highest average order value?
+A: device
+Web           9955.66
+Mobile App    9947.89
+Tablet        9913.05
+
+Q: Which payment method has the highest average order value?
+A: payment_method
+Debit Card          9957.14
+Credit Card         9955.57
+Cash on Delivery    9925.79
+UPI                 9917.04
+
+Q: What is the purchase volume by day of week?
+A: purchase_date
+Monday       144470
+Tuesday      143513
+Wednesday    141856
+Thursday     142149
+Friday       141750
+Saturday     142294
+Sunday       143968
+
+Q: What is the average seller rating per category?
+A: category
+Sports         3.75
+Electronics    3.75
+Home           3.75
+Clothing       3.75
+Beauty         3.75
+
+======================================================================
+  SECTION 7 — STOCK & INVENTORY
+======================================================================
+
+Q: What is the average stock level per category?
+A: category
+Electronics    250.3
+Beauty         250.1
+Sports         250.1
+Clothing       250.0
+Home           249.7
+
+Q: How many products are low-stock (stock < 10)?
+A: 19,786 records (1.98%)
+
+Q: Which subcategory has the lowest average stock?
+A: subcategory
+Furniture    248.6
+Mobile       249.4
+Kids         249.7
+Decor        249.7
+Haircare     249.8
+
+======================================================================
+  SECTION 8 — CORRELATION SUMMARY
+======================================================================
+
+Q: Correlation matrix of numeric features:
+A:                     price  discount  final_price  rating  review_count  stock  seller_rating  shipping_time_days
+price               1.000    -0.207        0.986   0.330        -0.000  0.001          0.000              -0.000
+discount           -0.207     1.000       -0.290  -0.069         0.002 -0.001          0.000              -0.000
+final_price         0.986    -0.290        1.000   0.326        -0.000  0.001          0.000              -0.000
+rating              0.330    -0.069        0.326   1.000        -0.001  0.001         -0.000               0.000
+review_count       -0.000     0.002       -0.000  -0.001         1.000 -0.001         -0.000               0.000
+stock               0.001    -0.001        0.001   0.001        -0.001  1.000         -0.001              -0.002
+seller_rating       0.000     0.000        0.000  -0.000        -0.000 -0.001          1.000               0.001
+shipping_time_days -0.000    -0.000       -0.000   0.000         0.000 -0.002          0.001               1.000
+
+Q: Is there a correlation between discount and rating?
+A: Pearson r = -0.0687  (weak negative relationship)
+
+Q: Is there a correlation between price and review count?
+A: Pearson r = -0.0002
+
+======================================================================
+  SECTION 9 — TOP PERFORMERS
+======================================================================
+
+Q: Which are the top 5 categories by order volume?
+A: category
+Home           200922
+Electronics    200038
+Sports         199889
+Clothing       199824
+Beauty         199327
+
+Q: Which are the top 5 brands by order volume?
+A: brand
+LG         83882
+Puma       83627
+Lenovo     83542
+Samsung    83535
+HP         83520
+
+Q: Which are the top 5 cities by order count?
+A: location
+Delhi        200649
+Bangalore    200270
+Chennai      199902
+Mumbai       199874
+Hyderabad    199305
+
+Q: Which are the top 5 sellers by revenue?
+A: seller_id
+S7740    1891954.53
+S2013    1810498.08
+S4656    1791917.86
+S6442    1786697.11
+S2478    1776687.77
