@@ -1,0 +1,227 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nijamoddin_projectReport</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system,"Segoe UI",system-ui,sans-serif; font-size: 14px; line-height: 1.6; background: #ffffff; color: #1f2328; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .report-header { border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; margin-bottom: 28px; }
+  .report-header h1 { font-size: 22px; font-weight: 700; color: #1f2328; }
+  .report-header p { color: #57606a; margin-top: 4px; font-size: 13px; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; background: #f0f4ff; color: #3b82d4; border: 1px solid #c7d9f8; }
+  .badge.green { background: #f0faf4; color: #1a7f37; border-color: #b2dfc4; }
+  .badge.purple { background: #f5f0ff; color: #7c5cd8; border-color: #d4c7f8; }
+
+  h2 { font-size: 15px; font-weight: 700; color: #1f2328; margin: 28px 0 12px; padding-left: 10px; border-left: 3px solid #3b82d4; }
+  h3 { font-size: 13px; font-weight: 600; color: #57606a; margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .kpi { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; }
+  .kpi .val { font-size: 20px; font-weight: 700; color: #3b82d4; }
+  .kpi .lbl { font-size: 11px; color: #57606a; margin-top: 2px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 8px; }
+  th { background: #f7f8fa; color: #57606a; font-weight: 600; text-align: left; padding: 7px 10px; border: 1px solid #e5e7eb; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 7px 10px; border: 1px solid #e5e7eb; color: #1f2328; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafbfc; }
+
+  .qa-block { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+  .qa-q { background: #f7f8fa; padding: 9px 14px; font-weight: 600; font-size: 13px; color: #1f2328; border-bottom: 1px solid #e5e7eb; }
+  .qa-q span { color: #3b82d4; font-weight: 700; margin-right: 6px; }
+  .qa-a { padding: 9px 14px; font-size: 13px; color: #444d56; }
+  .qa-a strong { color: #1f2328; }
+
+  .viz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .viz-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; font-size: 12px; }
+  .viz-card .viz-num { font-size: 11px; font-weight: 700; color: #3b82d4; background: #e8f0fe; display: inline-block; padding: 1px 7px; border-radius: 10px; margin-bottom: 6px; }
+  .viz-card .viz-title { font-weight: 600; color: #1f2328; margin-bottom: 2px; }
+  .viz-card .viz-file { font-family: "Consolas","Courier New",monospace; color: #57606a; font-size: 11px; }
+
+  code { font-family: "Consolas","Courier New",monospace; background: #f0f4ff; color: #3b82d4; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  .code-block { background: #1f2328; color: #e6edf3; font-family: "Consolas","Courier New",monospace; font-size: 12px; line-height: 1.7; padding: 14px 18px; border-radius: 8px; margin: 6px 0 14px; overflow-x: auto; white-space: pre; }
+  .code-block .cmd { color: #79c0ff; }
+  .code-block .cmt { color: #8b949e; }
+
+  .tree { background: #1f2328; color: #e6edf3; font-family: "Consolas","Courier New",monospace; font-size: 12px; line-height: 1.8; padding: 16px 20px; border-radius: 8px; overflow-x: auto; white-space: pre; }
+  .tree .dir { color: #79c0ff; font-weight: 600; }
+  .tree .file { color: #a5d6ff; }
+  .tree .cmt { color: #8b949e; }
+
+  .insight { background: #f0faf4; border-left: 3px solid #1a7f37; padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 8px; font-size: 13px; }
+  .insight strong { color: #1a7f37; }
+
+  .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 12px; color: #8c959f; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="report-header">
+    <h1>Nijamoddin_projectReport</h1>
+    <p>Amazon E-Commerce 1M Dataset — Exploratory Data Analysis &amp; Visualizations</p>
+    <p style="margin-top:4px;font-size:12px;color:#888">Tech Stack: Python · Pandas · NumPy · Matplotlib · Seaborn · Plotly · Streamlit</p>
+    <div class="badge-row">
+      <span class="badge">1,000,000 rows</span>
+      <span class="badge">20 columns</span>
+      <span class="badge green">Zero missing values</span>
+      <span class="badge green">Zero duplicates</span>
+      <span class="badge purple">44 questions answered</span>
+      <span class="badge purple">12 visualizations</span>
+    </div>
+  </div>
+
+  <h2>1. Project Structure</h2>
+  <div class="tree"><span class="dir">amazon_ecommerce_analysis/</span>
+├── <span class="dir">data/</span>
+│   ├── <span class="file">amazon_ecommerce_1M.csv</span>                    <span class="cmt"># Raw dataset (1M rows)</span>
+│   └── <span class="file">amazon_ecommerce_cleaned.csv</span>               <span class="cmt"># Cleaned dataset</span>
+├── <span class="dir">analysis/</span>
+│   ├── <span class="file">clean_dataset.py</span>                           <span class="cmt"># Data cleaning script</span>
+│   ├── <span class="file">eda.py</span>                                     <span class="cmt"># EDA — 44 Q&amp;A questions</span>
+│   └── <span class="file">visualize.py</span>                               <span class="cmt"># 12 chart generation</span>
+├── <span class="file">Nijamoddin_E-commerce_Analysis.py</span>             <span class="cmt"># Merged single-file pipeline</span>
+├── <span class="dir">visualizations/</span>                                <span class="cmt"># 12 PNG charts (auto-generated)</span>
+├── <span class="dir">reports/</span>
+│   ├── <span class="file">cleaning_report.txt</span>
+│   └── <span class="file">eda_qa_report.txt</span>
+├── <span class="file">requirements.txt</span>
+└── <span class="file">README.md</span></div>
+
+  <h2>2. Tech Stack</h2>
+  <table>
+    <tr><th>Package</th><th>Version</th><th>Role</th></tr>
+    <tr><td><code>pandas</code></td><td>2.2.3</td><td>Data loading, manipulation, groupby aggregations</td></tr>
+    <tr><td><code>numpy</code></td><td>2.1.3</td><td>Numerical operations, correlation matrix</td></tr>
+    <tr><td><code>matplotlib</code></td><td>3.10.0</td><td>Base plotting engine for all charts</td></tr>
+    <tr><td><code>seaborn</code></td><td>0.13.2</td><td>Statistical visualization (heatmap, themes)</td></tr>
+    <tr><td><code>scipy</code></td><td>1.15.3</td><td>Statistical computations</td></tr>
+    <tr><td><code>plotly</code></td><td>5.24.1</td><td>Interactive chart support</td></tr>
+    <tr><td><code>streamlit</code></td><td>1.45.1</td><td>Web dashboard framework</td></tr>
+  </table>
+
+  <h2>3. Dataset Overview</h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="val">1M</div><div class="lbl">Total Records</div></div>
+    <div class="kpi"><div class="val">20</div><div class="lbl">Columns</div></div>
+    <div class="kpi"><div class="val">603,815</div><div class="lbl">Unique Users</div></div>
+    <div class="kpi"><div class="val">90,000</div><div class="lbl">Unique Products</div></div>
+    <div class="kpi"><div class="val">5</div><div class="lbl">Categories</div></div>
+    <div class="kpi"><div class="val">16</div><div class="lbl">Sub-categories</div></div>
+    <div class="kpi"><div class="val">9,000</div><div class="lbl">Unique Sellers</div></div>
+    <div class="kpi"><div class="val">Mar 2024<br />– Mar 2026</div><div class="lbl">Date Range</div></div>
+  </div>
+  <table style="margin-top:12px">
+    <tr><th>Column</th><th>Type</th><th>Description</th></tr>
+    <tr><td><code>user_id</code></td><td>object</td><td>Unique customer identifier</td></tr>
+    <tr><td><code>product_id</code></td><td>object</td><td>Unique product identifier</td></tr>
+    <tr><td><code>category / subcategory</code></td><td>object</td><td>Product classification (5 categories, 16 sub)</td></tr>
+    <tr><td><code>brand</code></td><td>object</td><td>Product brand</td></tr>
+    <tr><td><code>price / discount / final_price</code></td><td>float64</td><td>Pricing details in INR</td></tr>
+    <tr><td><code>rating / review_count</code></td><td>float64 / int64</td><td>Product reviews</td></tr>
+    <tr><td><code>stock</code></td><td>int64</td><td>Available inventory</td></tr>
+    <tr><td><code>purchase_date</code></td><td>datetime64</td><td>Order date</td></tr>
+    <tr><td><code>shipping_time_days</code></td><td>int64</td><td>Days to ship</td></tr>
+    <tr><td><code>location / device / payment_method</code></td><td>object</td><td>Customer context</td></tr>
+    <tr><td><code>is_returned</code></td><td>bool</td><td>Return flag</td></tr>
+    <tr><td><code>delivery_status / seller_id / seller_rating</code></td><td>object / float</td><td>Fulfillment info</td></tr>
+  </table>
+
+  <h2>4. Data Quality Summary</h2>
+  <table>
+    <tr><th>Check</th><th>Result</th><th>Action Taken</th></tr>
+    <tr><td>Missing values</td><td style="color:#1a7f37;font-weight:600">0 (none)</td><td>No imputation needed</td></tr>
+    <tr><td>Duplicate rows</td><td style="color:#1a7f37;font-weight:600">0 (none)</td><td>No deduplication needed</td></tr>
+    <tr><td>Negative prices</td><td style="color:#1a7f37;font-weight:600">0 (none)</td><td>No rows removed</td></tr>
+    <tr><td>Rating out of range</td><td style="color:#1a7f37;font-weight:600">0 (none)</td><td>No correction needed</td></tr>
+    <tr><td>purchase_date type</td><td style="color:#e36209;font-weight:600">Was string</td><td>Converted to datetime64</td></tr>
+    <tr><td>Whitespace in strings</td><td style="color:#e36209;font-weight:600">Present</td><td>Stripped from 10 string columns</td></tr>
+  </table>
+
+  <h2>5. EDA Q&amp;A Findings (44 Questions Answered)</h2>
+
+  <h3>Pricing &amp; Discount</h3>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the average product price?</div><div class="qa-a">Mean: <strong>Rs 13,224</strong>  |  Min: Rs 200  |  Max: Rs 79,999</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the average discount?</div><div class="qa-a"><strong>29.0%</strong> average discount. <strong>68%</strong> of orders had a discount greater than 20%.</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Which category offers the highest average discount?</div><div class="qa-a"><strong>Clothing (40.0%)</strong>, followed by Sports (27.5%), Beauty (27.5%), Home (27.5%), Electronics (22.5%).</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the average final price per category?</div><div class="qa-a"><strong>Electronics</strong> — Rs 32,889 avg  |  Home Rs 7,615  |  Sports Rs 5,627  |  Beauty Rs 1,886  |  Clothing Rs 1,647.</div></div>
+
+  <h3>Revenue &amp; Sales</h3>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the total revenue?</div><div class="qa-a"><strong>Rs 9.94 Billion</strong> total revenue across all orders.</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Which category generates the most revenue?</div><div class="qa-a"><strong>Electronics — Rs 6.58B (66%)</strong> of total revenue. Home Rs 1.53B, Sports Rs 1.12B, Beauty Rs 376M, Clothing Rs 329M.</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Which city has the highest total spending?</div><div class="qa-a"><strong>Delhi (Rs 2.00B)</strong> leads, followed by Bangalore (Rs 1.99B), Mumbai (Rs 1.99B), Chennai (Rs 1.98B), Hyderabad (Rs 1.98B).</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Which payment method is most popular?</div><div class="qa-a">All four are near-equal (~25% each): <strong>Cash on Delivery (250K)</strong>, Credit Card (250K), UPI (250K), Debit Card (249K).</div></div>
+
+  <h3>Ratings &amp; Reviews</h3>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the overall average rating?</div><div class="qa-a"><strong>3.93 / 5.0</strong> overall. Electronics leads at 4.21.</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Do returned items have lower ratings?</div><div class="qa-a">Yes — returned items avg <strong>3.86</strong> vs 3.94 for non-returned items.</div></div>
+
+  <h3>Returns &amp; Delivery</h3>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the overall return rate?</div><div class="qa-a"><strong>11.60%</strong>. Beauty (11.76%) and Clothing (11.74%) have the highest return rates.</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the delivery status breakdown?</div><div class="qa-a">Delivered (29.5%), Delayed (29.5%), In Transit (29.4%), Returned (11.6%) — nearly <strong>30% of orders are delayed</strong>.</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Which city has the highest return rate?</div><div class="qa-a"><strong>Hyderabad (12.23%)</strong> and Chennai (12.22%) lead; Delhi (10.60%) and Mumbai (10.74%) are lowest.</div></div>
+
+  <h3>Customer Behaviour</h3>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Which device is most used?</div><div class="qa-a">All three nearly equal: <strong>Mobile App (33.4%)</strong>, Web (33.3%), Tablet (33.3%). Web users have highest avg order value (Rs 9,956).</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>What is the purchase volume by day of week?</div><div class="qa-a">Uniform across all days (~142K–144K orders/day). <strong>Monday</strong> slightly leads (144,470 orders).</div></div>
+
+  <h3>Correlations</h3>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Is there a correlation between discount and rating?</div><div class="qa-a">Pearson r = <strong>-0.069</strong> — weak negative. Higher discounts marginally associated with lower ratings.</div></div>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>Strongest correlation found?</div><div class="qa-a"><strong>price ↔ final_price: r = 0.986</strong>. All other numeric features are essentially uncorrelated.</div></div>
+
+  <h3>Inventory</h3>
+  <div class="qa-block"><div class="qa-q"><span>Q</span>How many low-stock products (stock &lt; 10)?</div><div class="qa-a"><strong>19,786 records (1.98%)</strong>. Furniture subcategory has the lowest average stock (248.6 units).</div></div>
+
+  <h2>6. Key Business Insights</h2>
+  <div class="insight"><strong>Electronics Dominance:</strong> 20% of order volume but 66% of total revenue — driven by high unit price (avg Rs 32,889).</div>
+  <div class="insight"><strong>High Delay Rate:</strong> ~30% of all orders are delayed — a critical logistics issue requiring attention.</div>
+  <div class="insight"><strong>Discount Trap:</strong> Clothing has the highest discounts (40%) yet the lowest revenue — heavy discounting doesn't drive revenue growth.</div>
+  <div class="insight"><strong>Payment Parity:</strong> All four payment methods share ~25% each — build and maintain support for all equally.</div>
+  <div class="insight"><strong>Balanced Geography:</strong> Revenue is nearly uniform across all 5 cities (~Rs 2B each) — no single dominant market.</div>
+  <div class="insight"><strong>Return Rate:</strong> 11.6% overall. Beauty and Clothing most returned — size/fit guides and better product descriptions recommended.</div>
+
+  <h2>7. Visualizations Generated (12 Charts)</h2>
+  <div class="viz-grid">
+    <div class="viz-card"><div class="viz-num">01</div><div class="viz-title">Revenue by Category</div><div class="viz-file">01_revenue_by_category.png</div></div>
+    <div class="viz-card"><div class="viz-num">02</div><div class="viz-title">Monthly Revenue Trend</div><div class="viz-file">02_monthly_revenue_trend.png</div></div>
+    <div class="viz-card"><div class="viz-num">03</div><div class="viz-title">Top 10 Brands by Orders</div><div class="viz-file">03_top10_brands_orders.png</div></div>
+    <div class="viz-card"><div class="viz-num">04</div><div class="viz-title">Return Rate by Category</div><div class="viz-file">04_return_rate_by_category.png</div></div>
+    <div class="viz-card"><div class="viz-num">05</div><div class="viz-title">Rating Distribution</div><div class="viz-file">05_rating_distribution.png</div></div>
+    <div class="viz-card"><div class="viz-num">06</div><div class="viz-title">Payment Method Distribution</div><div class="viz-file">06_payment_method_pie.png</div></div>
+    <div class="viz-card"><div class="viz-num">07</div><div class="viz-title">Delivery Status Donut</div><div class="viz-file">07_delivery_status_donut.png</div></div>
+    <div class="viz-card"><div class="viz-num">08</div><div class="viz-title">Avg Discount by Category</div><div class="viz-file">08_avg_discount_by_category.png</div></div>
+    <div class="viz-card"><div class="viz-num">09</div><div class="viz-title">Orders by Device Type</div><div class="viz-file">09_orders_by_device.png</div></div>
+    <div class="viz-card"><div class="viz-num">10</div><div class="viz-title">Correlation Heatmap</div><div class="viz-file">10_correlation_heatmap.png</div></div>
+    <div class="viz-card"><div class="viz-num">11</div><div class="viz-title">Top 5 Cities by Revenue</div><div class="viz-file">11_top5_cities_revenue.png</div></div>
+    <div class="viz-card"><div class="viz-num">12</div><div class="viz-title">AOV by Category &amp; Device</div><div class="viz-file">12_avg_order_value_category_device.png</div></div>
+  </div>
+
+  <h2>8. Run Instructions</h2>
+  <h3>Install dependencies</h3>
+  <div class="code-block"><span class="cmd">cd</span> amazon_ecommerce_analysis
+<span class="cmd">pip install</span> -r requirements.txt</div>
+  <h3>Run the full pipeline (single file)</h3>
+  <div class="code-block"><span class="cmd">python</span> Nijamoddin_E-commerce_Analysis.py
+<span class="cmt"># Runs all 3 stages: cleaning -&gt; EDA -&gt; visualizations</span></div>
+  <h3>Or run individual scripts</h3>
+  <div class="code-block"><span class="cmd">python</span> analysis/clean_dataset.py   <span class="cmt"># Stage 1 only</span>
+<span class="cmd">python</span> analysis/eda.py            <span class="cmt"># Stage 2 only</span>
+<span class="cmd">python</span> analysis/visualize.py     <span class="cmt"># Stage 3 only</span></div>
+
+  <h2>9. Output Files</h2>
+  <table>
+    <tr><th>File</th><th>Description</th></tr>
+    <tr><td><code>data/amazon_ecommerce_cleaned.csv</code></td><td>Cleaned dataset with correct dtypes, whitespace stripped</td></tr>
+    <tr><td><code>reports/cleaning_report.txt</code></td><td>Data quality check results</td></tr>
+    <tr><td><code>reports/eda_qa_report.txt</code></td><td>44 answered EDA questions across 9 analytical sections</td></tr>
+    <tr><td><code>visualizations/01–12 .png</code></td><td>12 publication-ready charts @ 120 DPI</td></tr>
+  </table>
+
+  <div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>
